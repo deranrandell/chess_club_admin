@@ -3,5 +3,6 @@ class PagesController < ApplicationController
   end
 
   def members
+    @members = Member.order(:rank)
   end
 end

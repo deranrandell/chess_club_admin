@@ -1,0 +1,34 @@
+<h1>Members</h1>
+
+<%= link_to "Add Member", new_member_path%>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Birthday</th>
+      <th>Games Played</th>
+      <th>Rank</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.name %></td>
+        <td><%= member.email %></td>
+        <td><%= member.birthday.strftime("%Y-%m-%d") %></td>
+        <td><%= member.games_played %></td>
+        <td><%= member.rank %></td>
+        <td>
+          <%= link_to "View", member_path(member) %>
+          <%= link_to "Edit", edit_member_path(member) %>
+          <%= link_to "Delete", member_path(member),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{member.name}?" }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

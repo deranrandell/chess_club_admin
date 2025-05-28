@@ -1,0 +1,24 @@
+<h1><%= @member.name %></h1>
+
+<p>
+  <strong>Email:</strong>
+  <%= @member.email %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @member.birthday.strftime("%Y-%m-%d") %>
+</p>
+
+<p>
+  <strong>Games Played:</strong>
+  <%= @member.games_played %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @member.rank %>
+</p>
+
+<%= link_to "Edit", edit_member_path(@member), class: "btn" %> |
+<%= link_to "Back", members_path, class: "btn" %>
