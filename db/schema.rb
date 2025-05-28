@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_28_035819) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_28_153614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "white_player_id"
+    t.bigint "black_player_id"
+    t.string "result", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["black_player_id"], name: "index_matches_on_black_player_id"
+    t.index ["white_player_id"], name: "index_matches_on_white_player_id"
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "name"
@@ -25,4 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_28_035819) do
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["rank"], name: "index_members_on_rank", unique: true
   end
+
+  add_foreign_key "matches", "members", column: "black_player_id"
+  add_foreign_key "matches", "members", column: "white_player_id"
 end

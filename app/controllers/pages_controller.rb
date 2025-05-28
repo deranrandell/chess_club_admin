@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def leaderboard
+    @members = Member.order(:rank)
   end
 
   def members

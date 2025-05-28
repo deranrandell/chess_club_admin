@@ -1,6 +1,6 @@
 <h1>Leaderboard</h1>
 
-<%= link_to "Capture Match", "#"%>
+<%= link_to "Capture Match", new_match_path %>
 
 <table>
   <thead>
@@ -10,11 +10,14 @@
       <th>Games Played</th>
     </tr>
   </thead>
-  <tbody>
+<tbody>
+  <% @members.each do |member| %>
     <tr>
-      <td>1</td>
-      <td>Jane Smith</td>
-      <td>15</td>
+      <td><%= member.rank %></td>
+      <td><%= member.name %></td>
+      <td><%= member.games_played %></td>
     </tr>
-  </tbody>
+  <% end %>
+</tbody>
+
 </table>

@@ -1,0 +1,22 @@
+<h1>Capture Match</h1>
+
+<%= form_with model: @match, local: true do |f| %>
+  <div>
+    <%= f.label :white_player_id, "White Player" %><br>
+    <%= f.collection_select :white_player_id, @members, :id, :name, prompt: "Select White Player" %>
+  </div>
+
+  <div>
+    <%= f.label :black_player_id, "Black Player" %><br>
+    <%= f.collection_select :black_player_id, @members, :id, :name, prompt: "Select Black Player" %>
+  </div>
+
+  <div>
+    <%= f.label :result, "Result" %><br>
+    <%= f.select :result, [["White Wins", "white"], ["Black Wins", "black"], ["Draw", "draw"]], prompt: "Select Result" %>
+  </div>
+
+  <div>
+    <%= f.submit "Save Match" %>
+  </div>
+<% end %>
