@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChessClubAdmin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-brand">
+        Chess Club Admin
+      </div>
+      <div class="nav-links">
+        <%= link_to "Leaderboard", leaderboard_path %>
+        <%= link_to "Members", members_path %>
+      </div>
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>
