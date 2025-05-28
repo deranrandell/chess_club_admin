@@ -8,7 +8,7 @@ class MatchesController < ApplicationController
   @match = Match.new(match_params)
 
   if @match.save
-    # Do some logic to update ranks
+    RankUpdater.new(@match).call
     redirect_to leaderboard_path, notice: "Match recorded and rankings updated."
   else
     @members = Member.order(:name)
