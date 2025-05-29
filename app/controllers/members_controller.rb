@@ -38,15 +38,23 @@ class MembersController < ApplicationController
     end
   end
 
-  def destroy
-    deleted_rank = @member.rank
+def destroy
+  deleted_rank = @member.rank
 
-    ActiveRecord::Base.transaction do
-      @member.destroy!
-      Member.where("rank > ?", deleted_rank).update_all("rank = rank - 1")
+  ActiveRecord::Base.transaction do
+    Match.where("white_player_id = ? OR black_player_id = ?", @member.id, @member.id).destroy_all
+
+    @member.destroy!
+
+    Member.where("rank > ?", deleted_rank).order(:rank).each do |member|
+      member.update!(rank: member.rank - 1)
+    end
   end
-    redirect_to members_path
-  end
+
+  redirect_to members_path, notice: "Member and associated matches deleted successfully."
+end
+
+
 
   private
 
