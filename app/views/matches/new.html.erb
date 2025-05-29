@@ -1,22 +1,68 @@
 <h1>Capture Match</h1>
 
-<%= form_with model: @match, local: true do |f| %>
-  <div>
-    <%= f.label :white_player_id, "White Player" %><br>
-    <%= f.collection_select :white_player_id, @members, :id, :name, prompt: "Select White Player" %>
+<% if @match.errors.any? %>
+ <div id="error_explanation">
+    <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+    <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>        
+
+<%= form_with(model: @match, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :white_player_id, "White Player" %>
+    <%= f.select :white_player_id, @members.map { |m| [m.name, m.id] }, { prompt: "Select White" }, { id: "white_player_select" } %>
   </div>
 
-  <div>
-    <%= f.label :black_player_id, "Black Player" %><br>
-    <%= f.collection_select :black_player_id, @members, :id, :name, prompt: "Select Black Player" %>
+  <div class="field">
+    <%= f.label :black_player_id, "Black Player" %>
+    <%= f.select :black_player_id, @members.map { |m| [m.name, m.id] }, { prompt: "Select Black" }, { id: "black_player_select" } %>
   </div>
 
-  <div>
-    <%= f.label :result, "Result" %><br>
+  <div class="field">
+    <%= f.label :result %>
     <%= f.select :result, [["White Wins", "white"], ["Black Wins", "black"], ["Draw", "draw"]], prompt: "Select Result" %>
   </div>
 
-  <div>
-    <%= f.submit "Save Match" %>
+  <div class="actions">
+    <%= f.submit "Record Match", class: "button-record" %>
+    <%= link_to "Back", leaderboard_path, class: "button-back" %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const whiteSelect = document.getElementById("white_player_select");
+    const blackSelect = document.getElementById("black_player_select");
+
+    function updateOptions() {
+      const whiteValue = whiteSelect.value;
+      const blackValue = blackSelect.value;
+
+      for (let option of whiteSelect.options) {
+        option.disabled = false;
+      }
+      for (let option of blackSelect.options) {
+        option.disabled = false;
+      }
+
+      if (blackValue) {
+        const whiteOptionToDisable = whiteSelect.querySelector(`option[value="${blackValue}"]`);
+        if (whiteOptionToDisable) whiteOptionToDisable.disabled = true;
+      }
+
+      if (whiteValue) {
+        const blackOptionToDisable = blackSelect.querySelector(`option[value="${whiteValue}"]`);
+        if (blackOptionToDisable) blackOptionToDisable.disabled = true;
+      }
+    }
+
+    whiteSelect.addEventListener("change", updateOptions);
+    blackSelect.addEventListener("change", updateOptions);
+
+    updateOptions();
+  });
+</script>

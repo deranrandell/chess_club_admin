@@ -1,7 +1,8 @@
 <h1>Members</h1>
 
-<%= link_to "Add Member", new_member_path%>
-
+<div class="actions">
+<%= link_to "Add Member", new_member_path, class: "button" %>
+</div>
 <table>
   <thead>
     <tr>
@@ -23,10 +24,11 @@
         <td><%= member.games_played %></td>
         <td><%= member.rank %></td>
         <td>
-          <%= link_to "View", member_path(member) %>
-          <%= link_to "Edit", edit_member_path(member) %>
+          <%= link_to "View", member_path(member), class: "button-view" %>
+          <%= link_to "Edit", edit_member_path(member), class: "button-edit" %>
           <%= link_to "Delete", member_path(member),
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{member.name}?" }%>
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{member.name}?" },
+              class: "button-delete" %>
         </td>
       </tr>
     <% end %>

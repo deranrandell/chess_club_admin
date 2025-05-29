@@ -12,11 +12,12 @@
   <body>
     <nav>
       <div class="nav-brand">
-        Chess Club Admin
+      <%= image_tag 'logo.png', alt: 'Chess Club Logo', class: 'logo'%>
       </div>
+      
       <div class="nav-links">
-        <%= link_to "Leaderboard", leaderboard_path %>
-        <%= link_to "Members", members_path %>
+      <%= link_to 'Leaderboard', leaderboard_path, class: "nav-link #{current_page?(leaderboard_path) ? 'active' : ''}" %>
+      <%= link_to 'Admin', members_path, class: "nav-link #{current_page?(members_path) ? 'active' : ''}" %>
       </div>
     </nav>
 

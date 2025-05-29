@@ -1,7 +1,7 @@
 <h1>Leaderboard</h1>
-
-<%= link_to "Capture Match", new_match_path %>
-
+<div class="actions">
+  <%= link_to "Capture Match", new_match_path, class: "button"  %>
+</div>
 <table>
   <thead>
     <tr>
@@ -19,5 +19,4 @@
     </tr>
   <% end %>
 </tbody>
-
 </table>

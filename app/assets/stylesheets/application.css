@@ -1,4 +1,4 @@
-/* Base reset and layout */
+/* Reset & Layout */
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -6,76 +6,402 @@ body {
     color: #212529;
 }
 
+/* Logo */
+.logo {
+    height: 100px;
+    padding-right: 1.5rem;
+}
+
+/* Navbar Styling */
 nav {
-    background-color: #343a40;
-    color: white;
-    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 0 2rem;
+    position: relative;
+    height: 100px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
+/* Left-aligned brand */
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
+
+/* Centered nav links using absolute centering */
+.nav-links {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 2rem;
+}
+
+/* Link styling */
 nav a {
-    color: white;
+    color: #333;
     text-decoration: none;
-    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.nav-link:hover,
+.nav-link.active {
+    color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
 }
 
-main {
-    padding: 2rem;
-}
-
-/* Headings */
+/* Heading */
 h1 {
-    color: #343a40;
     font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-/* Links */
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Buttons / Action Links */
-.actions a {
-    margin-right: 0.5rem;
-}
-
-/* Tables */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-table thead {
-    background-color: #e9ecef;
-}
-
-table th,
-table td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
-
-table th {
-    font-weight: bold;
-}
-
-/* Utility */
-.text-center {
+    margin: 1.5rem 0 1rem;
     text-align: center;
+    color: #333;
+}
+
+/* Capture Match Button */
+.actions {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.actions .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.actions .button:hover,
+.actions .button:focus {
+    background-color: #45a049;
+    box-shadow: 0 0 8px rgba(69, 160, 73, 0.6);
+}
+
+/* Table styling */
+table {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #f1f1f1;
+}
+
+/* Centering text in table header and body */
+th,
+td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    font-weight: 700;
+    color: #444;
+}
+
+td {
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Shared action button styles */
+td a[class^="button-"] {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 0 0.25rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* View: soft gray */
+.button-view {
+    background-color: #6c757d;
+    /* muted gray */
+}
+
+.button-view:hover,
+.button-view:focus {
+    background-color: #5a6268;
+    box-shadow: 0 0 6px rgba(90, 98, 104, 0.7);
+}
+
+/* Edit: soft blue */
+.button-edit {
+    background-color: #5c87d6;
+    /* desaturated blue */
+}
+
+.button-edit:hover,
+.button-edit:focus {
+    background-color: #486fb5;
+    box-shadow: 0 0 6px rgba(72, 111, 181, 0.7);
+}
+
+/* Delete: soft red */
+.button-delete {
+    background-color: #e57373;
+    /* soft red */
+}
+
+.button-delete:hover,
+.button-delete:focus {
+    background-color: #d32f2f;
+    box-shadow: 0 0 6px rgba(211, 47, 47, 0.7);
+}
+
+/* Form container */
+.form-container {
+    max-width: 480px;
+    margin: 1rem auto 2rem;
+    padding: 1.5rem 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    font-size: 1rem;
+    color: #212529;
+    font-family: inherit;
+}
+
+/* Error explanation */
+#error_explanation {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+}
+
+#error_explanation h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+/* Form label */
+.form-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+/* Form inputs */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="date"],
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 1.25rem;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="date"]:focus {
+    border-color: #4caf50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Submit button */
+.form-container input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-container input[type="submit"]:hover,
+.form-container input[type="submit"]:focus {
+    background-color: #45a049;
+    box-shadow: 0 0 8px rgba(69, 160, 73, 0.6);
+}
+
+/* Show member details container */
+.member-details {
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 1.5rem 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    color: #212529;
+    font-family: inherit;
+}
+
+.member-details p {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.member-details strong {
+    color: #333;
+}
+
+.show-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    /* space between buttons */
+    margin-top: 2rem;
+}
+
+.btn-edit {
+    background-color: #5c87d6;
+    /* blue */
+    color: white;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn-edit:hover,
+.btn-edit:focus {
+    background-color: #486fb5;
+    box-shadow: 0 0 6px rgba(72, 111, 181, 0.7);
+}
+
+.btn-back {
+    background-color: #6c757d;
+    /* gray */
+    color: white;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    background-color: #565e64;
+    box-shadow: 0 0 6px rgba(86, 94, 100, 0.7);
+}
+
+.field {
+    margin: 1rem auto;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: #333;
+}
+
+.field label {
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.field select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.25s ease;
+}
+
+.field select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button-record {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.button-record:hover,
+.button-record:focus {
+    background-color: #45a049;
+    box-shadow: 0 0 8px rgba(69, 160, 73, 0.6);
+}
+
+.button {
+    background-color: #6c757d;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #5a6268;
+    box-shadow: 0 0 6px rgba(90, 98, 104, 0.7);
+}
+
+.button-back {
+    background-color: #6c757d;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.button-back:hover,
+.button-back:focus {
+    background-color: #5a6268;
+    box-shadow: 0 0 6px rgba(90, 98, 104, 0.7);
 }
